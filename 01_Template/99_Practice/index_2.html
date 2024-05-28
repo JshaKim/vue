@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue practice</title>
+
+</head>
+<body>
+    <script>
+        const {createApp, ref} = Vue; // vue 클래스 인스턴스 생성
+        createApp = "app"; //creatApp을 app으로 초기화 
+            setup(){
+                const jsonData = ref(scholar); // scholar를 반응형 데이터로 변환하여 jsonData에 대입
+                const count = ref(0); // count를 0으로 초기화
+                const cmode = () => { // 
+                    count.value++; // 클릭 수량에 따른 증
+                    
+                }
+            }
+    </script>
+</body>
+</html>

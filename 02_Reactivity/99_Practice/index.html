@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>index2 vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./data.js"></script>
+    <style>
+      .character {
+        border: 1px solid black;
+        width: 300px;
+        height: 500px;
+        overflow: hidden;
+      }
+
+      .imgContainer {
+        display: flex;
+        justify-content: center;
+      }
+
+      .imgContainer img {
+        width: 50%;
+        height: 50%;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: row;
+      }
+
+      h1 {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <button @click="cmode()">Change</button>
+      <header>
+        <h1>vue template 이벤트 적용</h1>
+        <div class="container">
+          <div v-for="item in jsonData" :key="item.id" class="character">
+            <h5>이름 : {{item.name}}</h5>
+            <p>{{item.introduction}}</p>
+            <div class="imgContainer" v-if="count % 2 === 0">
+              <img :src="item.img" />
+            </div>
+            <div class="imgContainer" v-else>
+              <img v-for="(img, index) in item.img" :key="index" :src="img" />
+            </div>
+          </div>
+        </div>
+      </header>
+    </div>
+
+    <script>
+      const { createApp, ref } = Vue;
+
+      // Vue 애플리케이션 인스턴스를 생성합니다.
+      const app = createApp({
+        setup() {
+          // ref는 Vue 3 Composition API의 일부로, 반응형 데이터를 만들기 위해 사용됩니다.
+          // 여기서 jsonData는 scholar 배열을 초기 값으로 가지는 반응형 데이터입니다.
+          const jsonData = ref(scholar);
+          // count는 0을 초기 값으로 가지는 반응형 데이터입니다.
+          const count = ref(0);
+
+          // cmode 함수는 사용자가 버튼을 클릭할 때 호출됩니다.
+          const cmode = () => {
+            // count 값을 1 증가시킵니다.
+            count.value++;
+            // count 값이 짝수일 경우 jsonData를 scholar로 설정합니다.
+            if (count.value % 2 === 0) {
+              jsonData.value = scholar;
+            } else {
+              // count 값이 홀수일 경우 jsonData를 msaSkill로 설정합니다.
+              jsonData.value = msaSkill;
+            }
+          };
+
+          // setup 함수에서는 jsonData, count, cmode를 반환하여 템플릿에서 사용할 수 있게 합니다.
+          return {
+            jsonData,
+            count,
+            cmode,
+          };
+        },
+      });
+
+      // Vue 인스턴스를 HTML의 id가 'app'인 요소에 마운트합니다.
+      app.mount("#app");
+    </script>
+  </body>
+</html>

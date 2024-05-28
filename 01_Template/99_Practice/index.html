@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./data.js"></script>
+    <title>Document</title>
+    <style>
+        .row{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            overflow: auto;
+        }
+        .bordered {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid black;
+            width: 400px;
+            height: 500px;
+            overflow: auto;
+            text-align: center;
+            object-fit: cover;
+        }
+        img{
+            width: 50%;
+            height: 50%;
+           
+        }
+    </style>
+</head>
+<body>
+    <header><h1>인물소개</h1></header>
+    <div class="row" id="app">
+        <div v-for="item in jsonData">
+            <div class="bordered"><br>이름 : {{item.name}}</br>
+                <br> 소개 : {{item.introduction}}</br>
+                <br> <img :src="item.img">
+            </div>
+            </li>
+        </div>
+    </div>
+
+    <script>
+
+
+        const { createApp } = Vue
+        createApp({
+            setup() {
+                const jsonData = scholar;
+
+                return {
+                    jsonData
+                }
+            }
+        }).mount("#app");
+    </script>
+</body>
+
+</html>
