@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Vue v-model 이해하기</title>
+    <style>
+      div {
+        border: 1px solid black;
+        padding: 5px;
+      }
+      h1 {
+        text-align: center;
+      }
+      .center-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    </style>
+  </head>
+  <body>
+    <h1>vue v-model 이해하기</h1>
+    <button @click="fetchData">조회하기</button>
+    <div id="app">
+      <select v-model="selectedOption">
+        <option value="register">인물등록</option>
+      </select>
+      <div v-if="selectedOption === 'register'" class="center-content">
+        <label>name :</label>
+        <input v-model="name" type="text" />
+        <br />
+        <label>introduction :</label>
+        <input v-model="introduction" type="text" />
+        <br />
+        <label>img :</label>
+        <input v-model="img" type="text" />
+      </div>
+      <button @click="register">등록하기</button>
+    </div>
+
+
+    <script>
+      const { createApp, ref } = Vue;
+
+      createApp({
+        setup() {
+          const selectedOption = ref("register");
+          const name = ref("");
+          const introduction = ref("");
+          const img = ref("");
+
+          const fetchData = () => {
+            // 조회하기 버튼 클릭 시 실행할 함수
+            console.log("조회하기 클릭");
+          };
+
+          const register = () => {
+            // 등록하기 버튼 클릭 시 실행할 함수
+            console.log("등록하기 클릭");
+            console.log("Name:", name.value);
+            console.log("Introduction:", introduction.value);
+            console.log("Img:", img.value);
+          };
+
+          return {
+            selectedOption,
+            name,
+            introduction,
+            img,
+            fetchData,
+            register,
+          };
+        },
+      }).mount("app");
+    </script>
+  </body>
+</html>

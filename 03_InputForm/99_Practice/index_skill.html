@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Vue v-model 이해하기</title>
+    <style>
+      div {
+        border: 1px solid black; /* 테두리를 검은색 1픽셀로 설정 */
+        padding: 5px; /* 내부 여백을 5픽셀로 설정 */
+      }
+      h1 {
+        text-align: center; /* 제목을 가운데 정렬 */
+      }
+      .center-content {
+        display: flex; /* flexbox 레이아웃 사용 */
+        flex-direction: column; /* 요소들을 세로로 쌓음 */
+        align-items: center; /* 가로축 중앙 정렬 */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>vue v-model 이해하기</h1>
+    <button @click="fetchData">조회하기</button>
+    <div id="app">
+      <select v-model="selectedOption">
+        <option value="register">인물등록</option>
+      </select>
+      <div v-if="selectedOption === 'register'" class="center-content">
+        <label>skill :</label>
+        <input v-model="skill" type="text" />
+        <br />
+        <label>list : </label>
+        <input v-model="list" type="text" />
+        <br />
+        <label>introduction :</label>
+        <input v-model="introduction" type="text" />
+        <br />
+        <label>img :</label>
+        <input v-model="img" type="url" />
+        <input v-model="img" type="url" />
+        <input v-model="img" type="url" />
+        <button @click="register">이미지 추가</button>
+      </div>
+      <button @click="register">등록하기</button>
+    </div>
+
+
+    <script>
+      const { createApp, ref } = Vue;
+
+      createApp({
+        setup() {
+          const selectedOption = ref("register");
+          const name = ref("");
+          const introduction = ref("");
+          const img = ref("");
+
+          const fetchData = () => {
+            // 조회하기 버튼 클릭 시 실행할 함수
+            console.log("조회하기 클릭");
+          };
+
+          const register = () => {
+            // 등록하기 버튼 클릭 시 실행할 함수
+            console.log("등록하기 클릭");
+            console.log("Name:", name.value);
+            console.log("Introduction:", introduction.value);
+            console.log("Img:", img.value);
+          };
+
+          return {
+            selectedOption,
+            name,
+            introduction,
+            img,
+            fetchData,
+            register,
+          };
+        },
+      }).mount("app");
+    </script>
+  </body>
+</html>
