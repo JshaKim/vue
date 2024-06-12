@@ -7,7 +7,6 @@
 </template>
 
 <style scoped>
-
 .header {
   background-color: #00bfa5;
   color: white;
@@ -16,6 +15,4 @@
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
-
 </style>
-

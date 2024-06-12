@@ -1,0 +1,23 @@
+/* KeyPad.css */
+.Favorite-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .Favorite-icon {
+    width: 24px;  /* 아이콘의 너비 */
+    height: 24px; /* 아이콘의 높이 */
+    background-image: url('src/icons/favorite.png'); /* 키패드 아이콘 경로 */
+    background-size: cover;
+  }
+  
+  .Favorite-text {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+    color: #868686;
+    margin-top: 5px;
+  }
